@@ -80,7 +80,7 @@ pipeline {
 
         stage('Smoke test') {
             steps {
-                sh 'BASE_URL=http://localhost:8080 ./smoke-test.sh'
+                sh 'BASE_URL=http://localhost:8081 ./smoke-test.sh'
             }
         }
     }
