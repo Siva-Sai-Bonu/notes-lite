@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+test-results.xml
+.idea/
+*.iml
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### local ###
+.env
