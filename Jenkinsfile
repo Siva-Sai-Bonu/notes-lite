@@ -67,12 +67,16 @@ pipeline {
             }
         }
 
-        sh """
-            APP_VERSION=${IMAGE_TAG} DOCKERHUB_USER=${DOCKERHUB_USER} \
-              docker compose pull redis
-            APP_VERSION=${IMAGE_TAG} DOCKERHUB_USER=${DOCKERHUB_USER} \
-              docker compose up -d --build
-        """
+        stage('Deploy') {
+            steps {
+                sh """
+                    APP_VERSION=${IMAGE_TAG} DOCKERHUB_USER=${DOCKERHUB_USER} \
+                      docker compose pull redis
+                    APP_VERSION=${IMAGE_TAG} DOCKERHUB_USER=${DOCKERHUB_USER} \
+                      docker compose up -d --build
+                """
+            }
+        }
 
         stage('Smoke test') {
             steps {
