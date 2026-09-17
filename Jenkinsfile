@@ -30,9 +30,7 @@ pipeline {
         stage('Unit tests') {
             steps {
                 sh '''
-                    python3 -m venv .venv
-                    . .venv/bin/activate
-                    pip install --no-cache-dir -r app/requirements-dev.txt
+                    pip3 install --no-cache-dir --break-system-packages -r app/requirements-dev.txt
                     pytest app/test_app.py --junitxml=test-results.xml
                 '''
             }
