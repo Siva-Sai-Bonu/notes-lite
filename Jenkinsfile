@@ -84,13 +84,14 @@ pipeline {
                     docker run --rm \
                       --network container:notes-nginx \
                       -e BASE_URL=http://localhost \
-                      -v "$PWD":/workspace -w /workspace \
+                      --volumes-from $(hostname) \
+                      -w "$PWD" \
                       curlimages/curl:latest \
                       sh ./smoke-test.sh
                 '''
             }
         }
-    }
+     }
 
     post {
         success { echo "Deployed ${IMAGE}" }
