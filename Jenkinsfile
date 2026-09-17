@@ -30,8 +30,10 @@ pipeline {
         stage('Unit tests') {
             steps {
                 sh '''
-                    pip3 install --no-cache-dir --break-system-packages -r app/requirements-dev.txt
-                    pytest app/test_app.py --junitxml=test-results.xml
+                    docker run --rm \
+                      -v "$PWD":/workspace -w /workspace \
+                      python:3.12-slim \
+                      bash -c "pip install --no-cache-dir -r app/requirements-dev.txt && pytest app/test_app.py --junitxml=test-results.xml"
                 '''
             }
             post {
