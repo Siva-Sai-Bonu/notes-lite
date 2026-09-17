@@ -80,10 +80,16 @@ pipeline {
 
         stage('Smoke test') {
             steps {
-                sh 'BASE_URL=http://localhost:8081 ./smoke-test.sh'
+                sh '''
+                    docker run --rm \
+                      --network container:notes-nginx \
+                      -e BASE_URL=http://localhost \
+                      -v "$PWD":/workspace -w /workspace \
+                      curlimages/curl:latest \
+                      sh ./smoke-test.sh
+                '''
             }
         }
-    }
 
     post {
         success { echo "Deployed ${IMAGE}" }
