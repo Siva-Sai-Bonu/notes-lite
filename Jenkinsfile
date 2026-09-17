@@ -12,7 +12,7 @@ pipeline {
     }
 
     environment {
-        DOCKERHUB_USER = 'shiva'                 // <-- your Docker Hub username
+        DOCKERHUB_USER = 'sivabonu81'                 // <-- your Docker Hub username
         IMAGE_NAME     = "${DOCKERHUB_USER}/notes-api"
         IMAGE_TAG      = "${env.BUILD_NUMBER}"
         IMAGE          = "${IMAGE_NAME}:${IMAGE_TAG}"
