@@ -31,7 +31,8 @@ pipeline {
             steps {
                 sh '''
                     docker run --rm \
-                      -v "$PWD":/workspace -w /workspace \
+                      --volumes-from $(hostname) \
+                      -w "$PWD" \
                       python:3.12-slim \
                       bash -c "pip install --no-cache-dir -r app/requirements-dev.txt && pytest app/test_app.py --junitxml=test-results.xml"
                 '''
