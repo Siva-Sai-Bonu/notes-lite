@@ -90,6 +90,7 @@ pipeline {
                 '''
             }
         }
+    }
 
     post {
         success { echo "Deployed ${IMAGE}" }
